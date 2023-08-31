@@ -52,12 +52,13 @@ function testButton(){
 
     var myList = document.getElementById("listSection");
     
+    
     for (var i = 0; i < recipeData.length; i++) {
         // Create a new list item element
         var listItem = document.createElement("li");
       
         // Check if the item is an object, and if so, convert it to a string representation
-        var itemText = typeof recipeData[i] === "object" ? JSON.stringify(recipeData[i]) : recipeData[i];
+        var itemText = typeof recipeData[i].title === "object" ? JSON.stringify(recipeData[i].title) : recipeData[i].title;
       
         // Set the text content of the list item to the converted itemText
         listItem.textContent = itemText;
