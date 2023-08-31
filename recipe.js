@@ -1,4 +1,5 @@
 let recipeData;
+let isEmpty = 1;
 
 
 function fetchRecipesByIngredients(ingredients) {
@@ -36,18 +37,25 @@ function fetchRecipesByIngredients(ingredients) {
       console.error('Error:', error);
       throw error; // Re-throw the error for further handling if needed
     });
+    
   }
 
 
-function findButton(){
+  async function findButton() {
     console.log("find button clicked");
     const includedIngredients = document.getElementById("includedElement").value;
     console.log(includedIngredients);
-    fetchRecipesByIngredients(includedIngredients);
+
+    try {
+        await fetchRecipesByIngredients(includedIngredients);
+        populateList();
+    } catch (error) {
+        console.error('Error:', error);
+    }
 }
 
 
-function testButton(){
+async function populateList(){
     console.log("test button clicked");
 
     var myList = document.getElementById("listSection");
