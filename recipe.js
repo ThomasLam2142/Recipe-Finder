@@ -1,5 +1,4 @@
-// Replace 'YOUR_API_KEY' with your actual API key
-
+let recipeData;
 
 
 function fetchRecipesByIngredients(ingredients) {
@@ -29,6 +28,7 @@ function fetchRecipesByIngredients(ingredients) {
     .then((data) => {
       // Log the recipe data to the console
       console.log(data);
+      recipeData = data;
       return data; // Return the data in case you want to use it elsewhere
     })
     .catch((error) => {
@@ -44,5 +44,27 @@ function findButton(){
     const includedIngredients = document.getElementById("includedElement").value;
     console.log(includedIngredients);
     fetchRecipesByIngredients(includedIngredients);
+}
+
+
+function testButton(){
+    console.log("test button clicked");
+
+    var myList = document.getElementById("listSection");
+    
+    for (var i = 0; i < recipeData.length; i++) {
+        // Create a new list item element
+        var listItem = document.createElement("li");
+      
+        // Check if the item is an object, and if so, convert it to a string representation
+        var itemText = typeof recipeData[i] === "object" ? JSON.stringify(recipeData[i]) : recipeData[i];
+      
+        // Set the text content of the list item to the converted itemText
+        listItem.textContent = itemText;
+      
+        // Append the list item to the <ul> element
+        myList.appendChild(listItem);
+      }
+
 }
 
