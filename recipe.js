@@ -2,17 +2,26 @@ let recipeData;
 let isEmpty = 1;
 
 
-function fetchRecipesByIngredients(ingredients) {
+function fetchRecipesByIngredients(ingredients,excludeIngredients) {
 
     const baseUrl = 'https://api.spoonacular.com/';
     const apiKey = '2a9a9c88bd524e7aa76cc7ccd2293cbd';
     // Join the ingredients into a comma-separated string
     const ingredientsString = ingredients;
+    const excludeString = excludeIngredients;
+
+    
 
     //const ingredientsString = ingredients.join(',');
   
-    // Example endpoint: Recipe Search by Ingredients
+
+
+      // Example endpoint: Recipe Search by Ingredients
     const endpoint = `recipes/findByIngredients?ingredients=${ingredientsString}&apiKey=${apiKey}`;
+
+
+    //const endpoint = `recipes/findByIngredients?ingredients=${includedIngredients}&excludeIngredients=${excludedIngredients}&apiKey=${apiKey}`;
+    console.log("debug break");
   
     // Construct the URL with the API key
     const apiUrl = `${baseUrl}${endpoint}`;
@@ -45,9 +54,11 @@ function fetchRecipesByIngredients(ingredients) {
     console.log("find button clicked");
     const includedIngredients = document.getElementById("includedElement").value;
     console.log(includedIngredients);
+    const excludeIngredients = document.getElementById("excludeElement").value;
+    console.log(excludeIngredients);
 
     try {
-        await fetchRecipesByIngredients(includedIngredients);
+        await fetchRecipesByIngredients(includedIngredients,excludeIngredients);
         populateList();
     } catch (error) {
         console.error('Error:', error);
